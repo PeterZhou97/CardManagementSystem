@@ -56,6 +56,9 @@
     			</tbody>
   			</table>
   		</div>
+  		<div class="col-xs-3 div_right_info">
+  			<a class="btn btn-info btn-lg btn-block" style="text-align:center"  href="Library_App.jsp" role="button">查看预约信息</a>
+  		</div>
   		<div class="col-xs-3 div_record">
   				<hr>
   				<!-- 小功能列表 -->
