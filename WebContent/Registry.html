@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <link href="css/bootstrap.min.css" rel="stylesheet"> 
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script> 
+    <script src="js/bootstrap.min.js"></script> 
+    <title>学生一卡通管理系统</title> 
+<title>用户注册</title>
+</head>
+<body>
+	 <div class="col-lg-6 col-md-6 col-xs-6"> 
+        <div class="col-lg-3 col-md-3 col-xs-3"></div>
+        <div class="page-header"> 
+            <h1>学生一卡通管理系统用户注册</h1>
+        </div>
+         <form class="form-horizontal" id="registry" name="registry"  action="LoginServlet" method="post">
+         	 <div class="form-group"> 
+                <div class="col-lg-2 col-sm-2 col-xs-2"> 
+                    <label for="UserID" class="control-label">用户名:</label> 
+                </div> 
+                <div class="col-lg-10 col-sm-10 col-xs-10"> 
+                    <input type="text" class="form-control" name="UserID" placeholder="用户名"> 
+                </div> 
+            </div> 
+            <div class="form-group"> 
+                <div class="col-lg-2 col-sm-2 col-xs-2"> 
+                    <label for="UserName" class="control-label">姓&nbsp;&nbsp;&nbsp;&nbsp;名:</label> 
+                </div> 
+                <div class="col-lg-10 col-sm-10 col-xs-10"> 
+                    <input type="text" class="form-control" name="UserName" placeholder="姓名"> 
+                </div> 
+            </div> 
+            <div class="form-group"> 
+                <div class="col-lg-2 col-sm-2 col-xs-2"> 
+                    <label for="PassWord" class="control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码:</label> 
+                </div> 
+                <div class="col-lg-10 col-sm-10 col-xs-10"> 
+                    <input type="password" class="form-control" name="PassWord" placeholder="密码"> 
+                </div> 
+            </div> 
+            <div class="form-group">  
+                   <div class="col-lg-2 col-sm-2 col-xs-2"> 
+                    	<label for="UserType" class="control-label">身&nbsp;&nbsp;&nbsp;&nbsp;份:</label> 
+                   </div>
+                   <div class="col-lg-10 col-sm-10 col-xs-10"> 
+                    	<select name="UserType" class="form-control" id="UserType">
+                           <option value="学生">学生</option>
+                           <option value="管理员">管理员</option>
+                    	</select>
+                   </div>  
+              </div>
+              <div class="page-header"> 
+            		<h3>在提交之前，如果你是普通持卡学生用户，请绑定您的银行卡！！</h3>
+        	  </div>
+        	  <div class="form-group"> 
+                	<div class="col-lg-2 col-sm-2 col-xs-2"> 
+                    	<label for="BankCardID" class="control-label">银行卡号:</label> 
+                	</div> 
+                	<div class="col-lg-10 col-sm-10 col-xs-10"> 
+                    	<input type="text" class="form-control" name="BankCardID" placeholder="银行卡号"> 
+                	</div> 
+              </div>
+              <div class="form-group"> 
+                	<div class="col-lg-2 col-sm-2 col-xs-2"> 
+                    	<label for="BankName" class="control-label">所属银行:</label> 
+                	</div> 
+                	<div class="col-lg-10 col-sm-10 col-xs-10"> 
+                    	<input type="text" class="form-control" name="BankName" placeholder="所属银行"> 
+                	</div> 
+              </div> 
+              <div class="form-group"> 
+                	<div class="col-lg-2 col-sm-2 col-xs-2"> 
+                    	<label for="BankCardPasswd" class="control-label">银行卡密码:</label> 
+                	</div> 
+                	<div class="col-lg-10 col-sm-10 col-xs-10"> 
+                    	<input type="password" class="form-control" name="BankCardPasswd" placeholder="银行卡密码"> 
+                	</div> 
+              </div>  
+              <div class="form-group"> 
+                <div class="col-lg-2 col-sm-2 col-xs-2"></div>
+                <div class="col-lg-10 col-sm-10 col-xs-10"> 
+                    <input type="hidden" name="opttype" value="registry"/>
+                    <input type="submit" class="btn btn-default" id="Registry" value="提&nbsp;&nbsp;&nbsp;&nbsp;交"> 
+                </div> 
+              </div> 
+         </form> 
+         <div class="col-xs-3 div_record">
+  				<hr>
+  				<!-- 小功能列表 -->
+  				<div class="row div_little_func">
+  					<div class="col-xs-4">
+ 						<a class="btn btn-default btn-cricle btn_stay"href="Login.html">返</a>
+  					</div>
+  				</div>
+  		</div>		
+    </div>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+
+  	<script src="../js/bootstrap.min.js"></script>
+
+  	<script src="../js/init.js" type="text/script"></script>
+
+  	<script src="../js/util.js"></script>
+</body>
+</html>

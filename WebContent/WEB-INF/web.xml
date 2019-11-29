@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="GBK"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
+  <filter>
+    <filter-name>CharEncodingFilter</filter-name>
+    <filter-class>controller.CharEncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>controller.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>CardFilter</filter-name>
+    <filter-class>controller.CardFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CardFilter</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>LibraryFilter</filter-name>
+    <filter-class>controller.LibraryFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LibraryFilter</filter-name>
+    <url-pattern>/stu/Library_Borrow.jsp,/stu/Library_Home.jsp,/stu/Library_Order.jsp,/stu/Library_Return.jsp,/stu/Library_Withdraw.jsp</url-pattern>
+  </filter-mapping>
+</web-app>
