@@ -15,10 +15,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.BookAppDao;
 import dao.BookDao;
 import dao.BorrowingDao;
 import dao.LibraryUserDao;
 import entity.Book;
+import entity.Books_Application;
 import entity.Books_Borrowing;
 import entity.CardUser;
 import entity.LibraryUser;
@@ -36,6 +38,7 @@ public class LibraryServlet extends HttpServlet {
     private LibraryUserDao dao=new LibraryUserDao();
     private BookDao dao2=new BookDao();
     private BorrowingDao dao3=new BorrowingDao();
+    private BookAppDao dao4=new BookAppDao();
     private SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
     Date now=new Date();
 	String today=df.format(now);
@@ -68,7 +71,7 @@ public class LibraryServlet extends HttpServlet {
 					dao.addUser(user);
 					response.setCharacterEncoding("gbk");
 					PrintWriter out = response.getWriter();
-					out.print("<script>alert('×¢²á³É¹¦£¡'); window.location='stu/Library_Login.jsp' </script>");
+					out.print("<script>alert('æ³¨å†ŒæˆåŠŸï¼'); window.location='stu/Library_Login.jsp' </script>");
 					out.flush();
 					out.close();
 					return;
@@ -76,7 +79,7 @@ public class LibraryServlet extends HttpServlet {
 				else {
 					response.setCharacterEncoding("gbk");
 					PrintWriter out = response.getWriter();
-					out.print("<script>alert('ĞÅÏ¢ÌîĞ´²»ÍêÕû£¡'); window.location='stu/Library_Registry.jsp' </script>");
+					out.print("<script>alert('ä¿¡æ¯å¡«å†™ä¸å®Œæ•´ï¼'); window.location='stu/Library_Registry.jsp' </script>");
 					out.flush();
 					out.close();
 					return;
@@ -91,7 +94,7 @@ public class LibraryServlet extends HttpServlet {
 					if(user==null) {
 						response.setCharacterEncoding("gbk");
 						PrintWriter out = response.getWriter();
-						out.print("<script>alert('ÓÃ»§²»´æÔÚ£¡'); window.location='stu/Library_Login.jsp' </script>");
+						out.print("<script>alert('ç”¨æˆ·ä¸å­˜åœ¨ï¼'); window.location='stu/Library_Login.jsp' </script>");
 						out.flush();
 						out.close();
 						return;
@@ -106,7 +109,7 @@ public class LibraryServlet extends HttpServlet {
 						else {
 							response.setCharacterEncoding("gbk");
 							PrintWriter out = response.getWriter();
-							out.print("<script>alert('ÃÜÂë´íÎó£¡'); window.location='stu/Library_Login.jsp' </script>");
+							out.print("<script>alert('å¯†ç é”™è¯¯ï¼'); window.location='stu/Library_Login.jsp' </script>");
 							out.flush();
 							out.close();
 							return;
@@ -117,7 +120,7 @@ public class LibraryServlet extends HttpServlet {
 				else {
 					response.setCharacterEncoding("gbk");
 					PrintWriter out = response.getWriter();
-					out.print("<script>alert('Î´ÌîĞ´ÓÃ»§Ãû»òÃÜÂë£¡'); window.location='stu/Library_Login.jsp' </script>");
+					out.print("<script>alert('æœªå¡«å†™ç”¨æˆ·åæˆ–å¯†ç ï¼'); window.location='stu/Library_Login.jsp' </script>");
 					out.flush();
 					out.close();
 					return;
@@ -133,7 +136,7 @@ public class LibraryServlet extends HttpServlet {
 					dao.updatePwd(user);
 					response.setCharacterEncoding("gbk");
 					PrintWriter out = response.getWriter();
-					out.print("<script>alert('ĞŞ¸ÄÃÜÂë³É¹¦£¡'); window.location='stu/Library_Home.jsp' </script>");
+					out.print("<script>alert('ä¿®æ”¹å¯†ç æˆåŠŸï¼'); window.location='stu/Library_Home.jsp' </script>");
 					out.flush();
 					out.close();
 					return;
@@ -141,7 +144,7 @@ public class LibraryServlet extends HttpServlet {
 				else {
 					response.setCharacterEncoding("gbk");
 					PrintWriter out = response.getWriter();
-					out.print("<script>alert('ĞÂÃÜÂëÓëÈ·ÈÏÃÜÂë²»Ò»ÖÂ£¡'); window.location='stu/Library_Home.jsp' </script>");
+					out.print("<script>alert('æ–°å¯†ç ä¸ç¡®è®¤å¯†ç ä¸ä¸€è‡´ï¼'); window.location='stu/Library_Home.jsp' </script>");
 					out.flush();
 					out.close();
 					return;
@@ -155,7 +158,7 @@ public class LibraryServlet extends HttpServlet {
 						dao.deleteUser(user);
 						response.setCharacterEncoding("gbk");
 						PrintWriter out = response.getWriter();
-						out.print("<script>alert('×¢Ïú³É¹¦£¡'); window.location='stu/Library_Login.jsp' </script>");
+						out.print("<script>alert('æ³¨é”€æˆåŠŸï¼'); window.location='stu/Library_Login.jsp' </script>");
 						out.flush();
 						out.close();
 						return;
@@ -163,7 +166,7 @@ public class LibraryServlet extends HttpServlet {
 					else {
 						response.setCharacterEncoding("gbk");
 						PrintWriter out = response.getWriter();
-						out.print("<script>alert('ÃÜÂë´íÎó£¡'); window.location='stu/Library_Withdraw.jsp' </script>");
+						out.print("<script>alert('å¯†ç é”™è¯¯ï¼'); window.location='stu/Library_Withdraw.jsp' </script>");
 						out.flush();
 						out.close();
 						return;
@@ -172,7 +175,7 @@ public class LibraryServlet extends HttpServlet {
 				else {
 					response.setCharacterEncoding("gbk");
 					PrintWriter out = response.getWriter();
-					out.print("<script>alert('ÇëÊäÈëÃÜÂë£¡'); window.location='stu/Library_Withdraw.jsp' </script>");
+					out.print("<script>alert('è¯·è¾“å…¥å¯†ç ï¼'); window.location='stu/Library_Withdraw.jsp' </script>");
 					out.flush();
 					out.close();
 					return;
@@ -188,7 +191,7 @@ public class LibraryServlet extends HttpServlet {
 					dao2.addBook(book);
 					response.setCharacterEncoding("gbk");
 					PrintWriter out = response.getWriter();
-					out.print("<script>alert('Ìí¼Ó³É¹¦£¡'); window.location='ad/BookInfo.jsp' </script>");
+					out.print("<script>alert('æ·»åŠ æˆåŠŸï¼'); window.location='ad/BookInfo.jsp' </script>");
 					out.flush();
 					out.close();
 					return;
@@ -196,7 +199,7 @@ public class LibraryServlet extends HttpServlet {
 				else {
 					response.setCharacterEncoding("gbk");
 					PrintWriter out = response.getWriter();
-					out.print("<script>alert('ĞÅÏ¢ÌîĞ´²»ÍêÕû£¡'); window.location='ad/BookInfoInput.jsp' </script>");
+					out.print("<script>alert('ä¿¡æ¯å¡«å†™ä¸å®Œæ•´ï¼'); window.location='ad/BookInfoInput.jsp' </script>");
 					out.flush();
 					out.close();
 					return;
@@ -222,7 +225,7 @@ public class LibraryServlet extends HttpServlet {
 					dao2.updateBook(book);
 					response.setCharacterEncoding("gbk");
 					PrintWriter out = response.getWriter();
-					out.print("<script>alert('¸ü¸Ä³É¹¦£¡'); window.location='ad/BookInfo.jsp' </script>");
+					out.print("<script>alert('æ›´æ”¹æˆåŠŸï¼'); window.location='ad/BookInfo.jsp' </script>");
 					out.flush();
 					out.close();
 					return;
@@ -230,7 +233,7 @@ public class LibraryServlet extends HttpServlet {
 				else {
 					response.setCharacterEncoding("gbk");
 					PrintWriter out = response.getWriter();
-					out.print("<script>alert('ĞÅÏ¢ÌîĞ´²»ÍêÕû£¡'); window.location='ad/BookInfoEdit.jsp' </script>");
+					out.print("<script>alert('ä¿¡æ¯å¡«å†™ä¸å®Œæ•´ï¼'); window.location='ad/BookInfoEdit.jsp' </script>");
 					out.flush();
 					out.close();
 					return;
@@ -242,7 +245,7 @@ public class LibraryServlet extends HttpServlet {
 				dao2.deleteBook(book);
 				response.setCharacterEncoding("gbk");
 				PrintWriter out = response.getWriter();
-				out.print("<script>alert('É¾³ı³É¹¦£¡'); window.location='ad/BookInfo.jsp' </script>");
+				out.print("<script>alert('åˆ é™¤æˆåŠŸï¼'); window.location='ad/BookInfo.jsp' </script>");
 				out.flush();
 				out.close();
 				return;
@@ -281,7 +284,7 @@ public class LibraryServlet extends HttpServlet {
 							dao3.addBorrow(borrow);
 							response.setCharacterEncoding("gbk");
 							PrintWriter out = response.getWriter();
-							out.print("<script>alert('Í¼ÊéÔ¤Ô¼³É¹¦£¬½èÔÄÆÚ´Ó"+appointed_date+"¿ªÊ¼£¡£¡'); window.location='stu/Library_Order.jsp' </script>");
+							out.print("<script>alert('å›¾ä¹¦é¢„çº¦æˆåŠŸï¼Œå€Ÿé˜…æœŸä»"+appointed_date+"å¼€å§‹ï¼ï¼'); window.location='stu/Library_Order.jsp' </script>");
 							out.flush();
 							out.close();
 							return;
@@ -289,7 +292,7 @@ public class LibraryServlet extends HttpServlet {
 						else {
 							response.setCharacterEncoding("gbk");
 							PrintWriter out = response.getWriter();
-							out.print("<script>alert('ÊäÈëÊ±¼äÓĞÎó£¡'); window.location='stu/Library_Order.jsp' </script>");
+							out.print("<script>alert('è¾“å…¥æ—¶é—´æœ‰è¯¯ï¼'); window.location='stu/Library_Order.jsp' </script>");
 							out.flush();
 							out.close();
 							return;
@@ -299,7 +302,7 @@ public class LibraryServlet extends HttpServlet {
 					else {
 						response.setCharacterEncoding("gbk");
 						PrintWriter out = response.getWriter();
-						out.print("<script>alert('¸ÃÊéÒÑÃ»ÓĞ¿â´æ£¡'); window.location='stu/Library_Order.jsp' </script>");
+						out.print("<script>alert('è¯¥ä¹¦å·²æ²¡æœ‰åº“å­˜ï¼'); window.location='stu/Library_Order.jsp' </script>");
 						out.flush();
 						out.close();
 						return;
@@ -308,11 +311,35 @@ public class LibraryServlet extends HttpServlet {
 				else {
 					response.setCharacterEncoding("gbk");
 					PrintWriter out = response.getWriter();
-					out.print("<script>alert('ĞÅÏ¢ÌîĞ´²»ÍêÕû£¡'); window.location='stu/Book_Order.jsp' </script>");
+					out.print("<script>alert('ä¿¡æ¯å¡«å†™ä¸å®Œæ•´ï¼'); window.location='stu/Book_Order.jsp' </script>");
 					out.flush();
 					out.close();
 					return;
 				}
+			}
+			case "book_withdraw":{
+				String StuID=request.getParameter("StuID");
+				String BookID=request.getParameter("BookID");
+				Books_Application app=dao4.queryAppByID(StuID, BookID);
+				dao4.deleteApp(app);
+				Books_Borrowing borrow=dao3.queryBorrowByID(StuID, BookID);
+				dao3.deleteBorrow(borrow);
+				Book book=(Book)request.getSession().getAttribute("ordered_book");
+				Book book2=(Book)request.getSession().getAttribute("borrowed_book");
+				if(book!=null) {
+					book.setStorage(book.getStorage()+1);
+					dao2.updateBook(book);
+				}
+				else if(book2!=null) {
+					book2.setStorage(book2.getStorage()+1);
+					dao2.updateBook(book2);
+				}
+				response.setCharacterEncoding("gbk");
+				PrintWriter out = response.getWriter();
+				out.print("<script>alert('æ’¤é”€æˆåŠŸï¼'); window.location='stu/Library_App.jsp' </script>");
+				out.flush();
+				out.close();
+				return;
 			}
 			case "book_borrow":{
 				String BookID=request.getParameter("BookID");
@@ -334,7 +361,7 @@ public class LibraryServlet extends HttpServlet {
 						dao3.addBorrow(borrow);
 						response.setCharacterEncoding("gbk");
 						PrintWriter out = response.getWriter();
-						out.print("<script>alert('Í¼Êé½èÔÄ³É¹¦£¬½èÔÄ´Ó"+today+"¿ªÊ¼£¡'); window.location='stu/Library_Borrow.jsp' </script>");
+						out.print("<script>alert('å›¾ä¹¦å€Ÿé˜…æˆåŠŸï¼Œå€Ÿé˜…ä»"+today+"å¼€å§‹ï¼'); window.location='stu/Library_Borrow.jsp' </script>");
 						out.flush();
 						out.close();
 						return;
@@ -342,7 +369,7 @@ public class LibraryServlet extends HttpServlet {
 					else {
 						response.setCharacterEncoding("gbk");
 						PrintWriter out = response.getWriter();
-						out.print("<script>alert('¸ÃÊéÒÑÃ»ÓĞ¿â´æ£¡'); window.location='stu/Library_Borrow.jsp' </script>");
+						out.print("<script>alert('è¯¥ä¹¦å·²æ²¡æœ‰åº“å­˜ï¼'); window.location='stu/Library_Borrow.jsp' </script>");
 						out.flush();
 						out.close();
 						return;
@@ -366,7 +393,7 @@ public class LibraryServlet extends HttpServlet {
 				}
 				response.setCharacterEncoding("gbk");
 				PrintWriter out = response.getWriter();
-				out.print("<script>alert('»¹Êé³É¹¦£¡'); window.location='stu/Library_Return.jsp' </script>");
+				out.print("<script>alert('è¿˜ä¹¦æˆåŠŸï¼'); window.location='stu/Library_Return.jsp' </script>");
 				out.flush();
 				out.close();
 				return;
@@ -374,24 +401,24 @@ public class LibraryServlet extends HttpServlet {
 			case "print":{
 				 try {
 			            WritableWorkbook wwb = null;
-			               // ´´½¨¿ÉĞ´ÈëµÄExcel¹¤×÷²¾
+			               // åˆ›å»ºå¯å†™å…¥çš„Excelå·¥ä½œç°¿
 			               String fileName = "D:\\eclipse-workspace\\CardManagementSystem\\WebContent\\files\\Borrowing.xls";
 			               File file=new File(fileName);
 			               if (!file.exists()) {
 			                   file.createNewFile();
 			               }
-			               //ÒÔfileNameÎªÎÄ¼şÃûÀ´´´½¨Ò»¸öWorkbook
+			               //ä»¥fileNameä¸ºæ–‡ä»¶åæ¥åˆ›å»ºä¸€ä¸ªWorkbook
 			               wwb = Workbook.createWorkbook(file);
 			 
-			               // ´´½¨¹¤×÷±í
+			               // åˆ›å»ºå·¥ä½œè¡¨
 			               WritableSheet ws = wwb.createSheet("Test Shee 1", 0);
-			               //²éÑ¯Êı¾İ¿âÖĞËùÓĞµÄÊı¾İ
+			               //æŸ¥è¯¢æ•°æ®åº“ä¸­æ‰€æœ‰çš„æ•°æ®
 			               CardUser user=(CardUser) request.getSession().getAttribute("user");
 			               List<Books_Borrowing> list= dao3.queryBorrowByID(user.getId());
-			               //Òª²åÈëµ½µÄExcel±í¸ñµÄĞĞºÅ£¬Ä¬ÈÏ´Ó0¿ªÊ¼
-			               Label label_bookid= new Label(0, 0, "Êé¼®ºÅ");//±íÊ¾µÚ
-			               Label label_date= new Label(1, 0, "¿ªÊ¼½èÔÄÈÕÆÚ");
-			               Label label_duration= new Label(2, 0, "½èÊéÆÚ");
+			               //è¦æ’å…¥åˆ°çš„Excelè¡¨æ ¼çš„è¡Œå·ï¼Œé»˜è®¤ä»0å¼€å§‹
+			               Label label_bookid= new Label(0, 0, "ä¹¦ç±å·");//è¡¨ç¤ºç¬¬
+			               Label label_date= new Label(1, 0, "å¼€å§‹å€Ÿé˜…æ—¥æœŸ");
+			               Label label_duration= new Label(2, 0, "å€Ÿä¹¦æœŸ");
 			               
 			               ws.addCell(label_bookid);
 			               ws.addCell(label_date);
@@ -407,13 +434,13 @@ public class LibraryServlet extends HttpServlet {
 			                   ws.addCell(labelDuration_i);
 			               }
 			             
-			              //Ğ´½øÎÄµµ
+			              //å†™è¿›æ–‡æ¡£
 			               wwb.write();
-			              // ¹Ø±ÕExcel¹¤×÷²¾¶ÔÏó
+			              // å…³é—­Excelå·¥ä½œç°¿å¯¹è±¡
 			               wwb.close();
 			               response.setCharacterEncoding("gbk");
 							PrintWriter out = response.getWriter();
-							out.print("<script>alert('µ¼³ö±í¸ñ³É¹¦£¡'); window.location='stu/Library_Return.jsp' </script>");
+							out.print("<script>alert('å¯¼å‡ºè¡¨æ ¼æˆåŠŸï¼'); window.location='stu/Library_Return.jsp' </script>");
 							out.flush();
 							out.close();
 							return;
